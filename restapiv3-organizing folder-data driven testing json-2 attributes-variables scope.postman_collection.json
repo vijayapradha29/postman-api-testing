@@ -1,0 +1,604 @@
+{
+	"info": {
+		"_postman_id": "db969c2c-be18-4e3a-ae5d-cdb9ee52d560",
+		"name": "restapiv3-organizing folder-data driven testing json-2 attributes-variables scope",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36933065",
+		"_collection_link": "https://api-team-1411.postman.co/workspace/PyATB1~da6f4f7a-d64e-42ba-8009-9b84629ede8a/collection/36933065-db969c2c-be18-4e3a-ae5d-cdb9ee52d560?action=share&source=collection_link&creator=36933065"
+	},
+	"item": [
+		{
+			"name": "End to End Testing",
+			"item": [
+				{
+					"name": "getallprojects-getting project id based on project names",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response=pm.response.json();\r",
+									"// console.log(response.values);\r",
+									"let projectdetails=response.values;\r",
+									"const projectnames=projectdetails.map((values)=>values.name);\r",
+									"console.log(projectnames);\r",
+									"pm.collectionVariables.set(\"projectidMap1\",projectdetails[projectnames.indexOf('Jira')].id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/rest/api/3/project/search?maxResults=2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"rest",
+								"api",
+								"3",
+								"project",
+								"search"
+							],
+							"query": [
+								{
+									"key": "maxResults",
+									"value": "2"
+								},
+								{
+									"key": "keys",
+									"value": "SCRUM",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --request GET \\\r\n  --url 'https://your-domain.atlassian.net/rest/api/3/project/search' \\\r\n  --user 'email@example.com:<api_token>' \\\r\n  --header 'Accept: application/json'"
+					},
+					"response": []
+				},
+				{
+					"name": "getallprojects-getting project key Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response=pm.response.json();\r",
+									"console.log(response);\r",
+									"// console.log(response.values);\r",
+									"let projectdetails=response.values;\r",
+									"const projectnames=projectdetails.map((values)=>values.name);\r",
+									"// console.log(projectnames);\r",
+									"const keyname=projectdetails[projectnames.indexOf(\"Jira\")].key;\r",
+									"console.log(keyname);\r",
+									"pm.collectionVariables.set(\"KeyName1\",keyname);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/rest/api/3/project/search?maxResults=2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"rest",
+								"api",
+								"3",
+								"project",
+								"search"
+							],
+							"query": [
+								{
+									"key": "maxResults",
+									"value": "2"
+								},
+								{
+									"key": "keys",
+									"value": "SCRUM",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --request GET \\\r\n  --url 'https://your-domain.atlassian.net/rest/api/3/project/search' \\\r\n  --user 'email@example.com:<api_token>' \\\r\n  --header 'Accept: application/json'"
+					},
+					"response": []
+				},
+				{
+					"name": "get issues types for projects Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res=pm.response.json();\r",
+									"// console.log(res);\r",
+									"let issuedetails=res;\r",
+									"const issuename=res.map((values)=>values.name);\r",
+									"console.log(issuename);\r",
+									"pm.collectionVariables.set(\"IssueId\",issuedetails[issuename.indexOf(pm.variables.get(\"issueName\"))].id);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://vijayatester16.atlassian.net/rest/api/3/issuetype/project?projectId={{projectidMap1}}",
+							"protocol": "https",
+							"host": [
+								"vijayatester16",
+								"atlassian",
+								"net"
+							],
+							"path": [
+								"rest",
+								"api",
+								"3",
+								"issuetype",
+								"project"
+							],
+							"query": [
+								{
+									"key": "projectId",
+									"value": "{{projectidMap1}}"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --request GET \\\r\n  --url 'https://your-domain.atlassian.net/rest/api/3/issuetype/project?projectId={projectId}' \\\r\n  --user 'email@example.com:<api_token>' \\\r\n  --header 'Accept: application/json'"
+					},
+					"response": []
+				},
+				{
+					"name": "Find Users Assignable to Projects Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response2=pm.response.json();\r",
+									"console.log(response2);\r",
+									"let names=response2;\r",
+									"const disName=names.map((values)=>values.displayName);\r",
+									"console.log(disName);\r",
+									"pm.collectionVariables.set(\"reporterID\",names[disName.indexOf(\"Tester Vijaya\")].accountId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "vijayatester16@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://vijayatester16.atlassian.net/rest/api/3/user/assignable/multiProjectSearch?projectKeys={{KeyName1}}",
+							"protocol": "https",
+							"host": [
+								"vijayatester16",
+								"atlassian",
+								"net"
+							],
+							"path": [
+								"rest",
+								"api",
+								"3",
+								"user",
+								"assignable",
+								"multiProjectSearch"
+							],
+							"query": [
+								{
+									"key": "projectKeys",
+									"value": "{{KeyName1}}"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --request GET \\\r\n  --url 'https://your-domain.atlassian.net/rest/api/3/user/assignable/multiProjectSearch?query=query&projectKeys={projectKeys}' \\\r\n  --user 'email@example.com:<api_token>' \\\r\n  --header 'Accept: application/json'"
+					},
+					"response": []
+				},
+				{
+					"name": "Create an Issue Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response3=pm.response.json();\r",
+									"// console.log(response3);\r",
+									"const issueID=response3.id;\r",
+									"// console.log(issueID);\r",
+									"pm.collectionVariables.set(\"CreateIssueID\",issueID);\r",
+									"const issueKey=response3.key;\r",
+									"pm.collectionVariables.set(\"CreateIssueKey\",issueKey);\r",
+									"// pm.environment.set(\"CreateIssueKeyNew\",issueKey);\r",
+									"\r",
+									"pm.test(\"Status Code is 201 and is Success\",function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.success;\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fields\": {\r\n    \"issuetype\": {\r\n      \"id\": \"{{IssueId}}\"\r\n    },\r\n    \"project\": {\r\n      \"id\": \"{{projectidMap1}}\"\r\n    },\r\n    \"reporter\": {\r\n      \"id\": \"{{reporterID}}\"\r\n    },\r\n    \"summary\": \"using map function we have performed end to end testing in postman\"\r\n  },\r\n  \"update\": {}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://vijayatester16.atlassian.net/rest/api/3/issue",
+							"protocol": "https",
+							"host": [
+								"vijayatester16",
+								"atlassian",
+								"net"
+							],
+							"path": [
+								"rest",
+								"api",
+								"3",
+								"issue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an Issue Copy 4",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// var title=pm.collectionVariables.replaceIn(\"{{$randomPhrase}}\");\r",
+									"pm.collectionVariables.set(\"issuetitle\",pm.variables.get(\"issueTitle\"));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// var response3=pm.response.json();\r",
+									"// // console.log(response3);\r",
+									"// const issueID=response3.id;\r",
+									"// // console.log(issueID);\r",
+									"// pm.collectionVariables.set(\"CreateIssueID\",issueID);\r",
+									"// const issueKey=response3.key;\r",
+									"// pm.collectionVariables.set(\"CreateIssueKey\",issueKey);\r",
+									"\r",
+									"// pm.test(\"Status Code is 201 and is Success\",function(){\r",
+									"//     pm.response.to.have.status(201);\r",
+									"//     pm.response.to.be.success;\r",
+									"// })"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fields\": {\r\n    \"issuetype\": {\r\n      \"id\": \"{{IssueId}}\"\r\n    },\r\n    \"project\": {\r\n      \"id\": \"{{projectidMap1}}\"\r\n    },\r\n    \"reporter\": {\r\n      \"id\": \"{{reporterID}}\"\r\n    },\r\n    \"summary\": \"{{issuetitle}}\"\r\n  },\r\n  \"update\": {}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://vijayatester16.atlassian.net/rest/api/3/issue",
+							"protocol": "https",
+							"host": [
+								"vijayatester16",
+								"atlassian",
+								"net"
+							],
+							"path": [
+								"rest",
+								"api",
+								"3",
+								"issue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Issue Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// var response=pm.response.json();\r",
+									"// console.log(response);\r",
+									"// const res1=response.fields.summary;\r",
+									"// console.log(res1);\r",
+									"\r",
+									"// pm.test(\"Summary Match\",function(){\r",
+									"//     pm.expect(res1).to.eql(pm.collectionVariables.get(\"issuetitle\"));\r",
+									"// })"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://vijayatester16.atlassian.net/rest/api/3/issue/{{CreateIssueKey}}",
+							"protocol": "https",
+							"host": [
+								"vijayatester16",
+								"atlassian",
+								"net"
+							],
+							"path": [
+								"rest",
+								"api",
+								"3",
+								"issue",
+								"{{CreateIssueKey}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "projectidMap1",
+			"value": ""
+		},
+		{
+			"key": "KeyName1",
+			"value": ""
+		},
+		{
+			"key": "IssueId",
+			"value": ""
+		},
+		{
+			"key": "reporterID",
+			"value": ""
+		},
+		{
+			"key": "issuetitle",
+			"value": "new"
+		},
+		{
+			"key": "issueName",
+			"value": "Story",
+			"type": "string"
+		},
+		{
+			"key": "CreateIssueID1",
+			"value": ""
+		},
+		{
+			"key": "CreateIssueKey1",
+			"value": ""
+		},
+		{
+			"key": "CreateIssueID",
+			"value": ""
+		},
+		{
+			"key": "CreateIssueKey",
+			"value": ""
+		}
+	]
+}
